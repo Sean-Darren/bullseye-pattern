@@ -24,12 +24,12 @@ class VisionEngine:
     def run_detection(self, source: str | np.ndarray, confidence_threshold: float = config.DEFAULT_CONFIDENCE_THRESHOLD,)-> Tuple[str, List[Dict]]:
         """Run YOLOv8 object detection on the chart image"""
         results = self.model.predict(
-        source = source,
-        conf = confidence_threshold,
-        iou = config.DEFAULT_IOU_THRESHOLD,
-        save = False,
-        verbose = False,
-    )
+            source = source,
+            conf = confidence_threshold,
+            iou = config.DEFAULT_IOU_THRESHOLD,
+            save = False,
+            verbose = False,
+        )
 
         result = results[0]
 
