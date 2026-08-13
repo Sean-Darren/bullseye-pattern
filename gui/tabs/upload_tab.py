@@ -1,4 +1,4 @@
-from core.vision_engine import visionEngine
+from core.vision_engine import VisionEngine
 from PySide6.QtWidgets import QMainWindow, QTabWidget, QVBoxLayout, QWidget
 
 

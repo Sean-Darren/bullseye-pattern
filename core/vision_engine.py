@@ -3,8 +3,9 @@ import cv2
 from typing import Tuple, List, Dict
 from ultralytics import YOLO
 import config
+import numpy as np
 
-class visionEngine:
+class VisionEngine:
     def __init__(self, model_path: str = config.MODEL_PATH):
         self.model_path = model_path
         self.model = self._initialize_model()
@@ -20,10 +21,15 @@ class visionEngine:
             print("[VisionEngine] Falling back to standard pre-trained yolov8n.pt")
             return YOLO("yolov8n.pt")
 
-    def run_detection(self, image_path: str, confidence_treshold: float = config.DEFAUL_CONFIDENCE_TRESHOLD, output_path: str = config.TEMP_DETECTED_CHART)-> Tuple[str, List[Dict]]:
+    def run_detection(self, source: str | np.ndarray, confidence_threshold: float = config.DEFAULT_CONFIDENCE_THRESHOLD,)-> Tuple[str, List[Dict]]:
         """Run YOLOv8 object detection on the chart image"""
-
-        results = self.model.predict(source=image_path, conf=confidence_treshold, save=False, verbose=False)
+        results = self.model.predict(
+        source = source,
+        conf = confidence_threshold,
+        iou = config.DEFAULT_IOU_THRESHOLD,
+        save = False,
+        verbose = False,
+    )
 
         result = results[0]
 
