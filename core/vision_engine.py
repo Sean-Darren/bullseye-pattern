@@ -20,7 +20,7 @@ class visionEngine:
             print("[VisionEngine] Falling back to standard pre-trained yolov8n.pt")
             return YOLO("yolov8n.pt")
 
-    def run_detection(self, image_path: str, confidence_treshold: float = config.DEFAUL_CONFIDENCE_TRESHOLD, output_path: str = config.TEMP_DETECTED_CHART):
+    def run_detection(self, image_path: str, confidence_treshold: float = config.DEFAUL_CONFIDENCE_TRESHOLD, output_path: str = config.TEMP_DETECTED_CHART)-> Tuple[str, List[Dict]]:
         """Run YOLOv8 object detection on the chart image"""
 
         results = self.model.predict(source=image_path, conf=confidence_treshold, save=False, verbose=False)
