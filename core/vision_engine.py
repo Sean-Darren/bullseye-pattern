@@ -34,7 +34,6 @@ class VisionEngine:
         result = results[0]
 
         anomated_frame = result.plot()
-        cv2.imwrite(output_path, anomated_frame)
 
         detections = []
         for box in result.boxes:

@@ -20,4 +20,11 @@ class MarketDataFetcher:
         if isinstance(data.columns, pd.MultiIndex):
             data.columns = data.columns.get_level_values(0)
 
+        last_day = data.index[-1].date()
+        data = data[data.index.date == last_day]
+
+        if data.empty:
+            raise ValueError(f"No candles for the last session of {ticker_clean}")
+
         return data
+
